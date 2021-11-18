@@ -1,7 +1,9 @@
 import numpy as np
 from mayavi import mlab
+import mayavi
 import random
 from tvtk.tools import visual
+import load_tarrain_color
 
 arr = np.genfromtxt("data/flight-coords.csv", delimiter=";")
 arr = np.transpose(arr)
@@ -9,13 +11,26 @@ arr = np.transpose(arr)
 
 # f = mlab.figure(size=(500,500))
 # visual.set_viewer(f)
+#f = mlab.figure()
 
+load_tarrain_color.main()
+
+scene = mlab.get_engine().scenes[0]
+scene.scene.movie_maker.record = True
+# scene.movie_maker.record = True
+
+# f.scene.movie_maker.record = True
+# eng = mlab.get_engine()
+# sc = eng.current_scene
+# sc.movie_maker.record = True
+for s in scene.children:
+    s.scene.disable_render = True
 
 index = 2
 @mlab.show
-@mlab.animate(delay=10)
+@mlab.animate(delay=16)
 def anim():
-    """Animate the b1 box."""
+
     print("start animation")
     i = 2
     while 1:
