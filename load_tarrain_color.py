@@ -16,9 +16,13 @@ def custom_load_model(filename):
 def main():
     arr = np.genfromtxt("data/flight-coords.csv", delimiter=";")
     arr = np.transpose(arr)
+    #fig = mlab.figure(size=(1024, 1024))
 
-    fig = mlab.figure(size=(1024, 1024))
-    #tube = mlab.plot3d(arr[0], arr[1], arr[2], arr[3], tube_radius=4, line_width=0.3)
+    tube1 = mlab.plot3d(arr[0], arr[1], arr[2], arr[3], tube_radius=4, line_width=0.3, name="cw Speed deficit change")
+    # tube2 = mlab.plot3d(arr[0], arr[1], arr[2], arr[4], tube_radius=4, line_width=0.3, name="Crosswind velocity")
+    # tube2 = mlab.plot3d(arr[0], arr[1], arr[2], arr[7], tube_radius=4, line_width=0.3, name="Tailwind velocity")
+    # tube2 = mlab.plot3d(arr[0], arr[1], arr[2], arr[6], tube_radius=4, line_width=0.3, name="Tailwind change")
+    # tube3 = mlab.plot3d(arr[0], arr[1], arr[2], arr[5], tube_radius=4, line_width=0.3, name="Turbulence intensity")
 
     terrain = custom_load_model('models/terreng.stl')
 
@@ -42,4 +46,11 @@ def main():
 
     surf2.module_manager.scalar_lut_manager.load_lut_from_file('misc/custom-ocean.lut')
 
+    #airplane = custom_load_model('models/Airbus_A380_Final_V.stl')
+
+    # mlab.triangular_mesh(airplane[0], airplane[1], airplane[2], airplane[3], color=(0.8, 0.8, 0.8),
+    #                      name='airplane')
     #mlab.show()
+
+
+#main()
